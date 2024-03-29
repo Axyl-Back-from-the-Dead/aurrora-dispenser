@@ -22,12 +22,7 @@ function rateLimiter() {
         windowMs: 5 * 60 * 1000, // 5 minutes
         limit: 20, // Limit each IP to 20 requests per window.
         standardHeaders: 'draft-7',
-        legacyHeaders: true,
-        validate: {
-            ip: true,
-            xForwardedForHeader: true,
-            trustProxy: true
-        },
+        legacyHeaders: false,
         skip: (req) => req.url === '/api/health',
         handler: (req, res) => {
             res
@@ -51,9 +46,11 @@ async function init() {
         res.setHeader('Expires', '0');
         next();
     });
+    // TODO: Improve it to avoid abuse by malicious users
+    app.set('trust proxy', 1);
 
     // Set up rate limiter
-    // app.use(rateLimiter())
+    app.use(rateLimiter())
 
     // Use helmet to secure Express with various HTTP headers
     app.use(helmet());
