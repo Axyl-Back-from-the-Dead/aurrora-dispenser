@@ -131,10 +131,11 @@ async function generateAuthBundle(
   consistencyToken: string,
   configToken: string
 ): Promise<AuthBundle> {
+  const authUserAgentString = `GoogleAuth/1.4 (${properties["Build.DEVICE"]} ${properties["Build.ID"]})`;
   const headers = {
     app: "com.google.android.gms",
     device: gsfId,
-    "User-Agent": `GoogleAuth/1.4 (${properties["Build.DEVICE"]} ${properties["Build.ID"]})`,
+    "User-Agent": authUserAgentString,
   };
 
   const params = getDefaultParams({
@@ -189,6 +190,15 @@ async function generateAuthBundle(
     locale: "en_US",
     tokenDispenserUrl: "https://auroraoss.com/api/auth",
     email: account.email,
+    deviceInfoProvider: {
+      authUserAgentString,
+      localeString: "en_US",
+      mccMnc: "310260",
+      playServicesVersion: properties["GSF.version"],
+      userAgentString: userAgent,
+      sdkVersion: properties["Build.VERSION.SDK_INT"],
+      properties,
+    }
   };
 }
 

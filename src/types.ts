@@ -5,7 +5,7 @@ export interface AuthBundle {
   authToken: string;
   deviceCheckInConsistencyToken: string;
   deviceConfigToken: string;
-  deviceInfoProvider?: any;
+  deviceInfoProvider?: DeviceInfoProvider;
   dfeCookie: string;
   email: string;
   experimentsConfigToken: string;
@@ -29,6 +29,12 @@ export interface Account {
   password?: string;
 }
 
-export interface Device {
-
+export interface DeviceInfoProvider {
+  authUserAgentString: string;
+  localeString: string;
+  mccMnc: string;
+  playServicesVersion: number;
+  properties?: any;
+  userAgentString: string;
+  sdkVersion: number;
 }
