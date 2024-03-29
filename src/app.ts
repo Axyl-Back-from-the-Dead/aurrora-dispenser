@@ -44,6 +44,10 @@ async function init() {
         res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
+
+        req.setTimeout(2 * 60000);
+        res.setTimeout(2 * 60000);
+
         next();
     });
     // TODO: Improve it to avoid abuse by malicious users
