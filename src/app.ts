@@ -2,6 +2,8 @@ import cors from "cors";
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
 import figlet from 'figlet';
+import helmet from "helmet";
+import morgan from 'morgan';
 import path from 'path';
 import routes from "./routes";
 
@@ -51,10 +53,13 @@ async function init() {
     });
 
     // Set up rate limiter
-    // app.use(rateLimiter())
+    app.use(rateLimiter())
 
     // Use helmet to secure Express with various HTTP headers
-    // app.use(helmet());
+    app.use(helmet());
+
+    // Add morgan for logging
+    app.use(morgan('combined'));
 
     // Add custom routes
     app.use(routes);
@@ -68,6 +73,9 @@ async function init() {
 
     process.on("SIGINT", () => gracefullyExit());
     process.on("SIGTERM", () => gracefullyExit());
+    process.on("uncaughtException", (error) => {
+        console.error("Uncaught exception:", error);
+    });
 }
 
 function gracefullyExit() {
