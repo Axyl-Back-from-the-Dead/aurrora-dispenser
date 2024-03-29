@@ -2,7 +2,6 @@ import cors from "cors";
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
 import figlet from 'figlet';
-import helmet from "helmet";
 import path from 'path';
 import routes from "./routes";
 
@@ -52,10 +51,10 @@ async function init() {
     });
 
     // Set up rate limiter
-    app.use(rateLimiter())
+    // app.use(rateLimiter())
 
     // Use helmet to secure Express with various HTTP headers
-    app.use(helmet());
+    // app.use(helmet());
 
     // Add custom routes
     app.use(routes);
