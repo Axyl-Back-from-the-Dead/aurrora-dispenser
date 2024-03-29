@@ -53,7 +53,7 @@ async function init() {
     });
 
     // Set up rate limiter
-    app.use(rateLimiter())
+    // app.use(rateLimiter())
 
     // Use helmet to secure Express with various HTTP headers
     app.use(helmet());
