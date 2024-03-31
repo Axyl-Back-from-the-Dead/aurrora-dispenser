@@ -198,6 +198,16 @@ async function generateAuthBundle(
       userAgentString: userAgent,
       sdkVersion: properties["Build.VERSION.SDK_INT"],
       properties,
+    },
+    userProfile: {
+      name: "Anonymous",
+      email: "anonymous@gmail.com",
+      artwork: {
+        url: "https://ssl.gstatic.com/docs/common/profile/llama_lg.png",
+        type: 4,
+        width: 129,
+        height: 129,
+      },
     }
   };
 }

@@ -15,7 +15,7 @@ export interface AuthBundle {
   locale: string;
   oAuthLoginToken?: string;
   tokenDispenserUrl: string;
-  userProfile?: any;
+  userProfile?: UserProfile;
 }
 
 export interface AnonymousAuthBundle {
@@ -37,4 +37,19 @@ export interface DeviceInfoProvider {
   properties?: any;
   userAgentString: string;
   sdkVersion: number;
+}
+
+export interface UserProfile {
+  name: string;
+  email: string;
+  artwork: Artwork;
+}
+
+export interface Artwork {
+  url: string;
+  urlAlt?: string;
+  type: number;
+  width: number;
+  height: number;
+  aspectRatio?: number;
 }
