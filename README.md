@@ -18,18 +18,18 @@ cd AuroraDispenser
 npm install
 ```
 
-3. Build the project
-```
-sh build.sh
-```
-
-4. Add accounts
+3. Add accounts
 ```
 Create a txt file as accounts.txt in resources directory
 
 Add you accounts in following format:
 email1 aas_token
 email2 aas_token
+```
+
+4. Build the project
+```
+sh build.sh
 ```
 
 5. Run!!
