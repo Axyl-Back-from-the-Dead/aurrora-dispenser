@@ -63,7 +63,23 @@ AAS Token is a sort of AccessToken, that can be used to generate Auth/Bearer tok
 ### How to generate AAS Token?
 Use Authenticator app to generate AAS Token for your Google Account, download Authenticator from [here](https://github.com/whyorean/Authenticator/releases)
 
+## Nginx Server Config
+Add following to your config to route all API requests to the new Aurora Dispenser service
+```
+server{
+  ...
+  location /api {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Client-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://localhost:3000/api;
+  }
+}
+```        
 
+Adapt to a version of above config if using Apache, Caddy or alikes.
 
 ## Contact
 
